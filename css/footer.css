@@ -10,7 +10,7 @@ footer {
   margin-top: 5px;
 }
 
-.keybord-block {
+.keybord-column {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,7 @@ footer {
   font-size: large;
 }
 
-.keybord-block_big {
+.keybord-column_big {
   display: flex;
   justify-content: center;
   align-items: center;

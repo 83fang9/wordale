@@ -21,4 +21,6 @@ main {
   border: 2px solid gray;
   width: 60px;
   height: 60px;
+  font-weight: bold;
+  font-size: 30px;
 }

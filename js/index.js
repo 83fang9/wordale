@@ -4,15 +4,30 @@ let index = 0;   //숫자가 변할꺼라 let으로 변수선언
 let attempts = 0;
 
 function appStart() {
-    //엔터를 누르면 정답을 확인하는 함수 짜기
+// (2) 엔터기로직한줄 완료 후 다음 줄로 넘어가기
+    const nextline =() =>{
+        attempts += 1; //attempts에 1을 더하라
+        index = 0;
+    };
+
+
+    // (1) 엔터를 누르면 정답을 확인하는 함수 짜기
     const handleEnterKey = () => {
         for (let i=0; i<5; i++) {    //반복문 0,1,2,3,4 적용
             const block = document.querySelector (`.board-column[data-index="${attempts}${i}"]`);
             
             const 입력한_글자 = block.innerText;
             const 정답_글자 = 정답[i];  // APPLE[0] = A, APPLE[1] = p
+            if (입력한_글자===정답_글자) block.style.background = "#6AAA64";
+            else if (정답.includes(입력한_글자)) block.style.background = "#C9B458";
+            else block.style.background = "#787C7E";
+
+            block.style.color = "white"
+            // 콘솔에서 정답 확인 체크할때 사용 (없어도 되는 함수)
             console.log('입력한글자:',입력한_글자,'정답글자:',정답_글자);
-        }  
+        }
+        
+         nextline(); // 한줄 함수가 끝나면 다음 라인으로 가거라 -> (2)
 
     };
     

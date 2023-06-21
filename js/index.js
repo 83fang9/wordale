@@ -3,9 +3,14 @@ const 정답 = "APPLE";
 let index = 0;   //숫자가 변할꺼라 let으로 변수선언
 let attempts = 0;
 
+const gameover = () => {
+    window.removeEventListener("keydown", handlekeydown);
+}; 
+
 function appStart() {
 // (2) 엔터기로직한줄 완료 후 다음 줄로 넘어가기
     const nextline =() =>{
+        if (attempts === 6) return gameover();
         attempts += 1; //attempts에 1을 더하라
         index = 0;
     };
@@ -13,13 +18,19 @@ function appStart() {
 
     // (1) 엔터를 누르면 정답을 확인하는 함수 짜기
     const handleEnterKey = () => {
+        //(3)맞은 개수 확인 후 종료시키기
+        let 맞은_갯수 = 0; 
+        
         for (let i=0; i<5; i++) {    //반복문 0,1,2,3,4 적용
             const block = document.querySelector (`.board-column[data-index="${attempts}${i}"]`);
             
             const 입력한_글자 = block.innerText;
             const 정답_글자 = 정답[i];  // APPLE[0] = A, APPLE[1] = p
-            if (입력한_글자===정답_글자) block.style.background = "#6AAA64";
-            else if (정답.includes(입력한_글자)) block.style.background = "#C9B458";
+            if (입력한_글자===정답_글자) {
+                맞은_갯수 += 1;
+                block.style.background = "#6AAA64";
+        
+            }else if (정답.includes(입력한_글자)) block.style.background = "#C9B458";
             else block.style.background = "#787C7E";
 
             block.style.color = "white"
@@ -27,7 +38,8 @@ function appStart() {
             console.log('입력한글자:',입력한_글자,'정답글자:',정답_글자);
         }
         
-         nextline(); // 한줄 함수가 끝나면 다음 라인으로 가거라 -> (2)
+        if (맞은_갯수 === 5) gameover();
+        else nextline(); // 한줄 함수가 끝나면 다음 라인으로 가거라 -> (2)
 
     };
     
@@ -50,6 +62,7 @@ function appStart() {
         };                
     };
 
+    //keydown or up 키보드를 누를때 이밴트가 발생한다 -> 핸들키다운 이벤트 작동
     window.addEventListener("keydown", handlekeydown)
 
 }

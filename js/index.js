@@ -42,6 +42,17 @@ function appStart() {
         else nextline(); // 한줄 함수가 끝나면 다음 라인으로 가거라 -> (2)
 
     };
+
+    
+
+    const handleBackspace =() =>{
+       if (index>0) {
+        // const preBlock =document.querySelector (`.board-column[data-index="${attempts}${index - 1}"]`);
+        const preBlock = 
+        preBlock.innerText = "";
+    }
+        if(index !==0) index -= 1;
+    };
     
     //키보드를 누르면 이벤트를 확인한다, 이벤트 안에는 키보드 고유 키값, 키코드 존재
     const handlekeydown = (event) => {    
@@ -53,7 +64,12 @@ function appStart() {
         //변수처리 -> 백틱사용 / $표시 및 중가로 사용
         const thisBlock = document.querySelector (`.board-column[data-index="${attempts}${index}"]`);
         
-        if (index === 5) { //인덱스가 5가 되면 
+        //백스페이스 작동하기
+        // console.log(event.key,event.keycode);  -> 이벤트로그로 백스페이스 key, keycode 알아냄
+        if (event.key ==='Backspace') handleBackspace();
+        
+        //다섯번 입력되면 다음줄로 가게 코딩하기
+        else if (index === 5) { //인덱스가 5가 되면 
             if (event.key === 'Enter')  handleEnterKey() ; //엔터키를 누르면 정답로직 실행 
             else return;  //5키를 다 눌렀는데 엔터키가 아닌 다른키를 누르면 함수 out  
         }  else if (65 <= keyCode && keyCode <= 90) {   // 알파벳 키코드가 65(a) ~ 90(z) 이므로, 알파벡이 아닌 키보드는 입력 안되게 조건문 작성
@@ -61,6 +77,13 @@ function appStart() {
             index += 1;  //같은의미 -> index = index +1;  and  index++;
         };                
     };
+
+    const startTimer = () =>{
+        
+    }
+
+    startTimer();
+
 
     //keydown or up 키보드를 누를때 이밴트가 발생한다 -> 핸들키다운 이벤트 작동
     window.addEventListener("keydown", handlekeydown)

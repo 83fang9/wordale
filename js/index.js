@@ -2,14 +2,23 @@ const 정답 = "APPLE";
 
 let index = 0; //숫자가 변할꺼라 let으로 변수선언
 let attempts = 0;
-let timer
-
-const gameover = () => {
-  window.removeEventListener("keydown", handlekeydown);
-  clearInterval(timer);
-};
+let timer;
 
 function appStart() {
+  const displayGameover = () => {
+    const div = document.createElement("div");
+    div.innerText = "게임이 종료됐습니다";
+    div.style =
+      "display:flex; justify-content:center; align-items:center; position:absolute; top:40vh; left:38vw; background-color:white; width:200px; height:80px";
+    document.body.appendChild(div);
+  };
+
+  const gameover = () => {
+    window.removeEventListener("keydown", handlekeydown);
+    displayGameover();
+    clearInterval(timer);
+  };
+
   // (2) 엔터기로직한줄 완료 후 다음 줄로 넘어가기
   const nextline = () => {
     if (attempts === 6) return gameover();
@@ -83,7 +92,7 @@ function appStart() {
     }
   };
 
-  const starTimer = () => {
+  const startTimer = () => {
     const 시작시간 = new Date();
 
     function setTime() {
@@ -96,11 +105,10 @@ function appStart() {
     }
     //주기성 1초마다 실행
     timer = setInterval(setTime, 1000);
-    console.log("timer:",timer)
-
+    console.log("timer:", timer);
   };
 
-  starTimer();
+  startTimer();
 
   //keydown or up 키보드를 누를때 이밴트가 발생한다 -> 핸들키다운 이벤트 작동
   window.addEventListener("keydown", handlekeydown);

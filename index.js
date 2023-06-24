@@ -17,6 +17,7 @@ function appStart() {
     window.removeEventListener("keydown", handlekeydown);
     displayGameover();
     clearInterval(timer);
+  };
 
   // (2) 엔터기로직한줄 완료 후 다음 줄로 넘어가기
   const nextline = () => {

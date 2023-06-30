@@ -5,7 +5,7 @@ main {
   align-items: center;
   margin-top: 20px;
   gap: 5px;
-} 
+}
 
 .board-row {
   display: flex;

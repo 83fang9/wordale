@@ -37,14 +37,16 @@
 
     <main>
       <div id="timer">00:00</div>
-      <div class="board-row row-0">
-        <div class="board-column" data-index="00"></div>
+      <div class="board-row row-0"> 
+        <!-- data-index를 넣은 이유는 블럭 하나하나에 숫자를 지정하여 차례대로 키가 입력되게 하기 위해서이다 -->
+        <div class="board-column" data-index="00"></div>  
         <div class="board-column" data-index="01"></div>
         <div class="board-column" data-index="02"></div>
         <div class="board-column" data-index="03"></div>
         <div class="board-column" data-index="04"></div>
       </div>
       <div class="board-row row-1">
+        <!-- 5개열이기 때문에 0~4 / 앞에자리 1은 2번째 열이라는 소리이다 -->
         <div class="board-column" data-index="10"></div>
         <div class="board-column" data-index="11"></div>
         <div class="board-column" data-index="12"></div>
